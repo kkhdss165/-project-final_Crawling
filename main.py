@@ -1,16 +1,16 @@
-# This is a sample Python script.
+#지하철 승하차 크롤링
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import urllib.request
+import json
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+service_url = "http://openapi.seoul.go.kr:8088/63506f52766b6b68313033657a4a6367/json/CardSubwayTime/1/5/202111/"
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(service_url)
+req = urllib.request.Request(service_url)
+response = urllib.request.urlopen(req)
+decodeData = response.read().decode('utf-8')
+jsonData = json.loads(decodeData)
+
+
+print(jsonData)
