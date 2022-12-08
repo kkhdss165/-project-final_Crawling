@@ -166,12 +166,20 @@ def add_subway_pos( data_list ):
 
 subway_list = get_subway_data()
 subway_info = add_subway_pos(subway_list)
+subway_result = []
 
 for subway in subway_info:
     print("이름 : ", subway['sub_name'])
     print("좌표 : ", subway['CRDNT_X'],subway['CRDNT_Y'])
 
-subway_table = pd.DataFrame(subway_info, columns=('지하철명', '4시~5시', '5시~6시', '6시~7시', '7시~8시', '8시~9시', '9시~10시', '10시~11시', '11시~12시', '12시~13시',
-                                                   '13시~14시','14시~15시','15시~16시','16시~17시', '17시~18시','18시~19시', '19시~20시', '20시~21시', '21시~22시',
-                                                  '23시~24시', '24시~1시', '1시~2시', '2시~3시', '3시~4시', 'X좌표', 'Y좌표'))
+    temp =[]
+    for elements in subway.values():
+        temp.append(elements)
+    subway_result.append(temp)
+
+columns = ('지하철명', '4시~5시', '5시~6시', '6시~7시', '7시~8시', '8시~9시', '9시~10시', '10시~11시', '11시~12시', '12시~13시',
+           '13시~14시','14시~15시','15시~16시','16시~17시', '17시~18시','18시~19시', '19시~20시', '20시~21시', '21시~22시',
+           '22시~23시','23시~24시', '24시~1시', '1시~2시', '2시~3시', '3시~4시', 'X좌표', 'Y좌표')
+
+subway_table = pd.DataFrame(subway_result, columns= columns)
 subway_table.to_csv("./subway_info.csv", encoding="cp949", mode='w', index=True)
